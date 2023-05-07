@@ -17,11 +17,10 @@ class EdicionDatosUsuario(UserChangeForm):
     email = forms.EmailField()
     first_name = forms.CharField(label='Nombre', max_length=20)
     last_name = forms.CharField(label='Apellido', max_length=20)
-    descripcion = forms.CharField(label='Descripcion', max_length=200)
-    link = forms.URLField()
+    descripcion = forms.CharField(label='Descripcion', max_length=200, required=False)
     avatar = forms.ImageField(required=False)
     
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'descripcion', 'link', 'avatar']
+        fields = ['email', 'first_name', 'last_name', 'descripcion', 'avatar']
         

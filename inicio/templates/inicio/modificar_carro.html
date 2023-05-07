@@ -13,6 +13,7 @@
 <form style="color:white" action={% url 'inicio:modificar_carro' carro.id %} method="POST">
     {% csrf_token %}
     <table>
+        {{form.media}}   
         {{form}}
     </table>
     <button>Modificar</button>
