@@ -11,6 +11,7 @@ urlpatterns = [
     # path('carros/modificar/<int:id_carro>', views.eliminar_carro, name='modificar_carro'),
     
     path('', views.mi_inicio, name='inicio'),
+    path('about/', views.about, name='about'),
     path('carros/', views.ListaCarros.as_view(), name='listar_carros'),
     path('carros/crear/', views.CrearCarro.as_view(), name='crear_carro'),
     path('carros/<int:pk>/', views.MostrarCarro.as_view(), name='mostrar_carro'),

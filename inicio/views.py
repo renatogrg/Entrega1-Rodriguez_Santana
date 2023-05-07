@@ -12,8 +12,11 @@ from django.urls import reverse_lazy
 # Create your views here.
 
 def mi_inicio(request):
-    print('PASE POR ACA!!!!!')
     return render(request, 'inicio/inicio.html')
+
+def about(request):
+    print('PASE POR ACA!!!!!')
+    return render(request, 'inicio/about.html')
 
 class ListaCarros(ListView):
     model = Carro
