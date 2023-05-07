@@ -627,7 +627,7 @@ progress {
 
 .figure-caption {
   font-size: 0.875em;
-  color: #6c757d;
+  color: #7d6c6c;
 }
 
 .container,
@@ -642,8 +642,8 @@ progress {
   width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: 10px;
+  margin-left: 1opx;
 }
 
 @media (min-width: 576px) {
@@ -2848,6 +2848,7 @@ textarea.form-control-lg {
   opacity: var(--bs-btn-disabled-opacity);
 }
 
+
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #64a19d;
@@ -2863,6 +2864,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #64a19d;
   --bs-btn-disabled-border-color: #64a19d;
+  margin-right: 10px;
 }
 
 .btn-secondary {
@@ -2897,6 +2899,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-color: #000;
   --bs-btn-disabled-bg: #67c29c;
   --bs-btn-disabled-border-color: #67c29c;
+  margin-right: 10px;
 }
 
 .btn-info {

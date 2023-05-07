@@ -1,0 +1,37 @@
+{% extends 'genericos/base.html' %}
+
+{% block title_head %}
+<title>Carros</title>
+{% endblock title_head %}
+
+{% block h1_header %}
+<h1>{{carro}}</h1>
+{% endblock h1_header %}
+
+
+{% block contenido %}
+<ul>
+    <li>Modelo: {{carro.modelo}}</li>
+    <li>Marca: {{carro.marca}}</li>
+    <li>Precio: {{carro.precio}}</li>
+    <li>Año de Fabricación: {{carro.anio_fabricacion}}</li>
+</ul>
+<p>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:modificar_carro' carro.id %}>Modificar</a>
+    </button>
+    <button>
+        <a class="navbar-brand" href={% url 'inicio:eliminar_carro' carro.id %}>Eliminar</a>
+    </button>
+</p>
+{% endblock contenido %}
+
+
+{% block about %}
+{% endblock about %}
+
+{% block contact%}
+{% endblock contact%}
+
+{% block footer %}
+{% endblock footer %}

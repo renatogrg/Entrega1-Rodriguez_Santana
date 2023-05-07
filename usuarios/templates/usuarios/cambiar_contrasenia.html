@@ -1,21 +1,26 @@
 {% extends 'genericos/base.html' %}
 
 {% block title_head %}
-<title>Registro de Carros</title>
+                    <title>Cambio Contrasenia</title>
 {% endblock title_head %}
 
 {% block h1_header %}
-<h1>Registrar Carro</h1>
+                    <h1>Cambio Contrasenia</h1>
 {% endblock h1_header %}
 
 
 {% block contenido %}
-<form style="color:white" action={% url 'inicio:crear_carro' %} method="POST">
+
+{% if form.errors %}
+<p style="color: #ec9898; font-size: 25px">Corrija los siguientes errores</p>
+{% endif %}
+
+<form style="color:white" action={% url 'usuarios:cambio_contrasenia' %} method="post">
     {% csrf_token %}
     <table>
-        {{form}}        
+        {{form}}
     </table>
-    <button>Crear</button>
+    <button>Cambiar</button>
 </form>
 {% endblock contenido %}
 
@@ -28,5 +33,3 @@
 
 {% block footer %}
 {% endblock footer %}
-
-

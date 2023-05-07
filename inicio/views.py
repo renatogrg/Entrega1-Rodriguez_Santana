@@ -1,36 +1,41 @@
-from datetime import datetime
-from django.http import HttpResponse
-from django.template import Template, Context, loader
 from inicio.models import Carro
-from django.shortcuts import render, redirect
-from inicio.forms import CreacionCarroFormulario, BuscarCarro
+from django.shortcuts import render
+
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 
 # Create your views here.
 
 def mi_inicio(request):
     print('PASE POR ACA!!!!!')
-    # return HttpResponse('<h1>Mi primera vista</h1>')
     return render(request, 'inicio/inicio.html')
 
-def crear_carro(request):
-    if request.method == "POST":
-        formulario = CreacionCarroFormulario(request.POST)
-        
-        if formulario.is_valid():
-            datos_correctos = formulario.cleaned_data
-            carro = Carro(modelo=datos_correctos['modelo'], marca=datos_correctos['marca'],precio=datos_correctos['precio'],año_fabricacion=datos_correctos['año_fabricacion'])
-            carro.save()
-            return redirect('inicio:listar_carros')
+class ListaCarros(ListView):
+    model = Carro
+    template_name = 'inicio\lista_carros.html'
     
-    formulario = CreacionCarroFormulario()
-    return render(request, 'inicio/crear_carro.html', {'formulario': formulario})
-
-def lista_carros(request):
-    modelo_a_buscar = request.GET.get('modelo', None)
-    if modelo_a_buscar:
-        carros = Carro.objects.filter(modelo__icontains=modelo_a_buscar)
-    else:
-        carros = Carro.objects.all()
-    formulario_busqueda = BuscarCarro()
-    return render(request, 'inicio/lista_carros.html', {'carros': carros, 'formulario': formulario_busqueda})
+class CrearCarro(CreateView):
+    model = Carro
+    template_name = 'inicio\crear_carro.html'
+    success_url = reverse_lazy('inicio:listar_carros')
+    fields = ['modelo', 'marca', 'precio', 'anio_fabricacion']  
+  
+class ModificarCarro(LoginRequiredMixin, UpdateView):
+    model = Carro
+    template_name = 'inicio\modificar_carro.html'
+    success_url = reverse_lazy('inicio:listar_carros')
+    fields = ['modelo', 'marca', 'precio', 'anio_fabricacion'] 
+    
+class EliminarCarro(LoginRequiredMixin, DeleteView):
+    model = Carro
+    template_name = 'inicio\eliminar_carro.html'
+    success_url = reverse_lazy('inicio:listar_carros')
+    
+class MostrarCarro(DetailView):
+    model = Carro
+    template_name = 'inicio/mostrar_carro.html'

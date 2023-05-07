@@ -11,24 +11,29 @@
 
 
 {% block contenido %}
-<p>
-    <form style="color:white" action={% url 'inicio:listar_carros' %}>
-        {{formulario}}
-        <button>Buscar</button>
-    </form>
-</p>
 
-{% if carros %}
-    {% for carro in carros %}
+<a style="color:white" class="navbar-brand" href={% url 'inicio:crear_carro' %}>Crear Carro</a><br> 
+
+{% if object_list %}
+    {% for carro in object_list %}
     <l1 class="text-white-50 mx-auto mt-2 mb-5">
-        Modelo: {{carro.modelo}} - Marca: {{carro.marca}} - Precio: ${{carro.precio}} - Año de Fabricación: {{carro.año_fabricacion}}<br>
+        <a class="navbar-brand" href={% url 'inicio:mostrar_carro' carro.id %}>{{carro}}</a>
+        <button>
+            <a class="navbar-brand" href={% url 'inicio:modificar_carro' carro.id %}>Modificar</a> 
+        </button>
+        <button>
+            <a class="navbar-brand" href={% url 'inicio:eliminar_carro' carro.id %}>Eliminar</a>  
+        </button>
+        <br> 
     </l1> 
     {% endfor %}
 
 {% else %}
+
 <p style="color: white">Aun no se han ingresado datos de carros por el momento.</p>
 
 {% endif %}
+
 {% endblock contenido %}
 
 
